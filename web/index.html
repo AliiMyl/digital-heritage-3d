@@ -35,32 +35,54 @@
         });
     </script>
     <script>
-        //scene setup
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000)
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(600, 400);
-
-        //append renderer to viewer div
-        document.getElementById("viewer").appendChild(renderer.domElement);
-
-        //Add a cube
-        const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true});
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
-
-        //camera position
-        camera.position.z = 5;
-
-        //Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
-            renderer.render(scene, camera);
-        }
-        animate();
+        document.addEventListener("DOMContentLoaded", () => {
+        
+            // ----- Three.js 3D viewer setup -----
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({antialias: true});
+            renderer.setSize(600, 400);
+        
+            const viewerDiv = document.getElementById("viewer");
+            if (viewerDiv) {
+                viewerDiv.appendChild(renderer.domElement);
+            }
+        
+            // Add a cube (placeholder for future 3D models)
+            const geometry = new THREE.BoxGeometry();
+            const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+            const cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+        
+            camera.position.z = 5;
+        
+            function animate() {
+                requestAnimationFrame(animate);
+                cube.rotation.x += 0.01;
+                cube.rotation.y += 0.01;
+                renderer.render(scene, camera);
+            }
+            animate();
+        
+           // ----- Metadata loader -----
+            fetch("../data/sample_metadata.json")
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById("metadata");
+                data.forEach(item => {
+                    container.innerHTML += `
+                        <h3>${item.title}</h3>
+                        <p><strong>Description:</strong> ${item.description}</p>
+                        <p><strong>Date:</strong> ${item.date}</p>
+                        <p><strong>Material:</strong> ${item.material}</p>
+                        <p><strong>Dimensions:</strong> ${item.dimensions}</p>
+                        <p><strong>Location Found:</strong> ${item.location_found}</p>
+                        <p><strong>Cultural Context:</strong> ${item.cultural_context}</p>
+                        <img src="${item.preview_image}" alt="Preview" />
+                    `;
+                });
+            });
+    });
     </script>
 </body>
 </html>
