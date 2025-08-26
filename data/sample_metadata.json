@@ -6,8 +6,8 @@
 	"date": "1200 CE",
 	"material": "Stone",
 	"dimensions": "15 x 10 x 8 cm",
-	"location found": "unknown",
-	"cultural context": "Medieval Europe",
+	"location_found": "unknown",
+	"cultural_context": "Medieval Europe",
 	"preview_image": "https://via.placeholder.com/200",
 	"model_file": "models/sample_model.gltf"
   }
