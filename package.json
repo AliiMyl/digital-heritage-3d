@@ -1,0 +1,20 @@
+{
+  "name": "digital-heritage-3d",
+  "version": "1.0.0",
+  "description": "A portfolio project exploring photogrammetry, cultural metadata, and interactive 3D visualization.  \r The goal is to build a mini digital museum object page:  \r - 3D scanned artifact  \r - Metadata stored in a database  \r - Interactive web viewer",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.3"
+  }
+}
