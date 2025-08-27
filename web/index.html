@@ -72,7 +72,7 @@
       animate();
 
       // Load Metadata JSON
-      fetch("../data/sample_metadata.json")
+      fetch("http://localhost:3000/objects")
         .then(response => response.json())
         .then(data => {
           const container = document.getElementById("metadata");
